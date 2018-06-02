@@ -23,6 +23,10 @@ databaseSetup();
 /**************************************************************
  * Routes
  *************************************************************/ 
+router.get('/', function(req, res) {
+  res.sendFile(getPage('/home.html'));
+});
+
 router.get('/quizzes', function(req, res) {
   res.sendFile(getPage('/quizzes/index.html'));
 });
