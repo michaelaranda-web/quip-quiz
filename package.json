@@ -1,7 +1,7 @@
 {
-  "name": "test-node-mongo-react",
+  "name": "quip-quiz",
   "version": "0.0.0",
-  "description": "",
+  "description": "Quip Quiz",
   "main": "server.js",
   "repository": "",
   "author": "",
