@@ -2,17 +2,22 @@ var http = require('http');
 var path = require('path');
 
 var express = require('express');
-
-//
-// ## SimpleServer `SimpleServer(obj)`
-//
-// Creates a new instance of SimpleServer with the following options:
-//  * `port` - The HTTP port to listen on. If `process.env.PORT` is set, _it overrides this value_.
-//
 var router = express();
 var server = http.createServer(router);
 
-router.use(express.static(path.resolve(__dirname, 'client')));
+var webpack = require('webpack');
+var webpackDevMiddleware = require('webpack-dev-middleware');
+var webpackHotMiddleware = require('webpack-hot-middleware');
+var devConfig = require('../webpack.dev.config.js');
+var compiler = webpack(devConfig);
+
+if (process.env.NODE_ENV === "development") {
+  router.use(webpackDevMiddleware(compiler, {
+    publicPath: process.env.IP + ":" + process.env.PORT + "/",
+  }));
+} else {
+  router.use(express.static('public'));
+}
 
 /**************************************************************
  * Database Setup
@@ -45,7 +50,9 @@ router.get('/quizzes/add_test', function(req, res) {
  * Server Start
  *************************************************************/ 
 
-server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function() {
+// var port = process.env.NODE_ENV === "development" ? 8081: process.env.PORT
+
+server.listen(process.env.PORT || 8080, process.env.IP || "0.0.0.0", function() {
   var addr = server.address();
   console.log("Server listening at", addr.address + ":" + addr.port);
 });
