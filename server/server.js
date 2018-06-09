@@ -7,7 +7,6 @@ var server = http.createServer(router);
 
 var webpack = require('webpack');
 var webpackDevMiddleware = require('webpack-dev-middleware');
-var webpackHotMiddleware = require('webpack-hot-middleware');
 var devConfig = require('../webpack.dev.config.js');
 var compiler = webpack(devConfig);
 
