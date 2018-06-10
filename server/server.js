@@ -5,6 +5,9 @@ var express = require('express');
 var router = express();
 var server = http.createServer(router);
 
+var favicon = require('serve-favicon');
+router.use(favicon(path.join(__dirname,'..','client','img','favicon.ico')));
+
 var webpack = require('webpack');
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var devConfig = require('../webpack.dev.config.js');
