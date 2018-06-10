@@ -1,12 +1,13 @@
 var webpack = require('webpack');
 
 module.exports = {
-  entry: [
-    './client/javascript/index.js'
-  ],
+  entry: {
+    home: './client/javascript/home.js',
+    quizNew: './client/javascript/quizNew.js'
+  },
   output: { 
     path: '/',
-    filename: 'bundle.js'
+    filename: '[name].bundle.js'
   },
   module: {
     rules: [

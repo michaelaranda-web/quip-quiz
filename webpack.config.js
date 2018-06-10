@@ -2,10 +2,13 @@ const path = require('path');
 const outputDirectory = 'public';
 
 module.exports = {
-  entry: './client/javascript/index.js',
+  entry: {
+    home: './client/javascript/home.js',
+    quizNew: './client/javascript/quizNew.js'
+  },
   output: {
     path: path.join(__dirname, outputDirectory),
-    filename: 'bundle.js'
+    filename: '[name].bundle.js'
   },
   module: {
     rules: [

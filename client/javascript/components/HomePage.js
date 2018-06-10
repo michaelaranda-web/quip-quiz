@@ -14,7 +14,7 @@ export class HomePage extends React.Component {
             <a className="home-page-button" href="/quizzes">View Quizzes</a>
           </div>
           <div className="button-container">
-            <a className="home-page-button" href="/quizzes">Create a Quiz</a>
+            <a className="home-page-button" href="/quizzes/new">Create a Quiz</a>
           </div>
         </div>
       </div>
