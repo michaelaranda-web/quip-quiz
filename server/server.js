@@ -48,7 +48,7 @@ router.get('/quizzes/new', function(req, res) {
 router.post('/quizzes/', function(req, res) {
   console.log(req.body.name);
   console.log(req.body.description);
-  console.log(req.body.questions);
+  // console.log(req.body.questions);
   
   res.send("Posted to /quizzes successfully!");
   // //Test MongoDB connection
@@ -63,9 +63,7 @@ router.post('/quizzes/', function(req, res) {
 
 /**************************************************************
  * Server Start
- *************************************************************/ 
-
-// var port = process.env.NODE_ENV === "development" ? 8081: process.env.PORT
+ *************************************************************/
 
 server.listen(process.env.PORT || 8080, process.env.IP || "0.0.0.0", function() {
   var addr = server.address();
