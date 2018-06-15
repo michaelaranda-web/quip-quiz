@@ -4,7 +4,8 @@ const outputDirectory = 'public';
 module.exports = {
   entry: {
     home: './client/javascript/home.js',
-    quizNew: './client/javascript/quizNew.js'
+    quizNew: './client/javascript/quizNew.js',
+    quizIndex: './client/javascript/quizIndex.js'
   },
   output: {
     path: path.join(__dirname, outputDirectory),
