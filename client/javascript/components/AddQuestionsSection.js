@@ -40,9 +40,12 @@ export class AddQuestionsSection extends React.Component {
                 <h4>{`Question ${i+1}: ${question.text}`}</h4>
                 {
                   Object.entries(question.choices).map((choice, i) => {
+                    var rightAnswer = choice[0] === question.answer;
+                    var checkmark = rightAnswer ? <span>✔</span> : null;
+                    
                     return (
                       <div className="choice" key={i}>
-                        {`${choice[0]} ${choice[1]}`}
+                        {`${choice[0]} ${choice[1]}`} {checkmark}
                       </div>
                     ) 
                   })

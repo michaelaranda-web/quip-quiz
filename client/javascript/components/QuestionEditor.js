@@ -13,22 +13,29 @@ export class QuestionEditor extends React.Component {
       choices: {
         "A": '',
         "B": ''
-      }
+      },
+      answer: ''
     }
     
     this.addNewChoice = this.addNewChoice.bind(this);
     this.updateChoiceText = this.updateChoiceText.bind(this);
     this.onSubmitQuestion = this.onSubmitQuestion.bind(this);
+    this.updateAnswer = this.updateAnswer.bind(this);
     this.handleInputChange = setStateOnInputChange.bind(this);
   }
   
   renderChoices() {
     return Object.entries(this.state.choices).map((choice, i) => {
+      var choiceValue = choice[0];
+      var choiceText = choice[1];
+      
       return <QuestionChoice
         key={i}
-        choiceText={choice[1]}
-        choiceValue={choice[0]}
+        choiceText={choiceText}
+        choiceValue={choiceValue}
         onInputChange={this.updateChoiceText}
+        onCheckboxSelect={this.updateAnswer}
+        isRightAnswer={this.state.answer === choiceValue}
       /> 
     });
   }
@@ -70,7 +77,14 @@ export class QuestionEditor extends React.Component {
   onSubmitQuestion() {
     this.props.onQuestionAdd({
       text: this.state.value,
-      choices: this.state.choices
+      choices: this.state.choices,
+      answer: this.state.answer
     });
+  }
+  
+  updateAnswer(value) {
+    this.setState({
+      answer: value
+    })
   }
 }
