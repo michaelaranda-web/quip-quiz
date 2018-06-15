@@ -39,16 +39,17 @@ router.get('/', function(req, res) {
   res.sendFile(getPage('/home.html'));
 });
 
-router.get('/quizzes/:quiz_id', function(req, res) {
-  res.sendFile(getPage('/quizzes/show.html'));
-});
-
 router.get('/quizzes', function(req, res) {
   res.sendFile(getPage('/quizzes/index.html'));
 });
 
 router.get('/quizzes/new', function(req, res) {
   res.sendFile(getPage('/quizzes/new.html'));
+});
+
+//MATCHES WITH quizzes/new, NEEDS TO COME AFTER!
+router.get('/quizzes/:quiz_id', function(req, res) {
+  res.sendFile(getPage('/quizzes/show.html'));
 });
 
 router.post('/quizzes/', function(req, res) {
