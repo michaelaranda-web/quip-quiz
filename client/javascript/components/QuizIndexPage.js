@@ -1,4 +1,5 @@
 import React from 'react';
+import { QuizzesList } from './QuizzesList';
 
 export class QuizIndexPage extends React.Component {
   render() {
@@ -9,6 +10,7 @@ export class QuizIndexPage extends React.Component {
             {"<"}
           </div>
           <h2>Quizzes</h2>
+          <QuizzesList />
         </div>
       </div>
     )

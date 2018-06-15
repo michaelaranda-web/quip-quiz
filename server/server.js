@@ -27,6 +27,8 @@ if (process.env.NODE_ENV === "development") {
 var databaseSetup = require("./database.js").databaseSetup;
 databaseSetup();
 
+var QuizModel = require("./models/quiz.js");
+
 /**************************************************************
  * Routes
  *************************************************************/ 
@@ -51,7 +53,6 @@ router.post('/quizzes/', function(req, res) {
   console.log("Questions: ", req.body.questions);
   
   //Test MongoDB connection
-  var QuizModel = require("./models/quiz.js");
   var quiz_instance = new QuizModel({
     name: req.body.name, 
     description: req.body.description,
@@ -64,6 +65,18 @@ router.post('/quizzes/', function(req, res) {
   });
   }
 )
+
+/**************************************************************
+ * API Routes
+ *************************************************************/ 
+router.get('/api/quizzes', function(req, res) {
+  QuizModel.find({}, (err, quizzes) => {
+    if (err) return handleError(err);
+    if (quizzes) {
+      res.send(quizzes);
+    }
+  });
+});
 
 /**************************************************************
  * Server Start
