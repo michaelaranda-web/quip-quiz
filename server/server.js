@@ -39,6 +39,10 @@ router.get('/', function(req, res) {
   res.sendFile(getPage('/home.html'));
 });
 
+router.get('/quizzes/:quiz_id', function(req, res) {
+  res.sendFile(getPage('/quizzes/show.html'));
+});
+
 router.get('/quizzes', function(req, res) {
   res.sendFile(getPage('/quizzes/index.html'));
 });
@@ -76,6 +80,15 @@ router.get('/api/quizzes', function(req, res) {
       res.send(quizzes);
     }
   });
+});
+
+router.get('/api/quizzes/:quiz_id', function(req, res) {
+  var quizId = req.params.quiz_id;
+  
+  QuizModel.findById(quizId, (err, quiz) => {
+    if (err) handleError(res, err.message);
+    res.send(quiz);
+  })
 });
 
 /**************************************************************
