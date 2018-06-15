@@ -9,7 +9,8 @@ var QuizSchema = new mongoose.Schema({
   questions: [
     { 
       text: String, 
-      choices: Object
+      choices: Object,
+      answer: String
     }
   ]
 });
