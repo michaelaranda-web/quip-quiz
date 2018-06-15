@@ -50,14 +50,18 @@ router.post('/quizzes/', function(req, res) {
   console.log("Description: ", req.body.description);
   console.log("Questions: ", req.body.questions);
   
-  res.send("Posted to /quizzes successfully!");
-  // //Test MongoDB connection
-  // var QuizModel = require("./models/quiz.js");
-  // var quiz_instance = new QuizModel({name: "Test Quiz", description: "I am a test quiz created on " + new Date().toString()});
-  // quiz_instance.save(function (err) {
-  //   if (err) handleError(res, err.message, "Failed to save quiz.");
-  //   res.send("Saved successfully!");
-  // });
+  //Test MongoDB connection
+  var QuizModel = require("./models/quiz.js");
+  var quiz_instance = new QuizModel({
+    name: req.body.name, 
+    description: req.body.description,
+    questions: req.body.questions
+  });
+  
+  quiz_instance.save(function (err) {
+    if (err) handleError(res, err.message, "Failed to save quiz.");
+    res.send("Saved successfully!");
+  });
   }
 )
 

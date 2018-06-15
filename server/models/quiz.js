@@ -5,7 +5,13 @@ var QuizSchema = new mongoose.Schema({
     type: String,
     index: true
   },
-  description: String
+  description: String,
+  questions: [
+    { 
+      text: String, 
+      choices: Object
+    }
+  ]
 });
 
 var QuizModel = mongoose.model('quiz', QuizSchema);
