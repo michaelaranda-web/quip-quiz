@@ -1,0 +1,19 @@
+#quiz-new-page, #quiz-index-page {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: $page-background-blue;
+  
+  .form-container {
+    @media (max-width: $mobile-max) {
+      top: 35px;
+      position: relative;
+      height: 90vh;
+    }
+    
+    background-color: white;
+    margin: auto;
+    max-width: 700px;
+    height: 100vh;
+  }
+}
