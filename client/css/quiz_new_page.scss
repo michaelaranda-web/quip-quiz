@@ -15,5 +15,11 @@
     margin: auto;
     max-width: 550px;
     height: 100vh;
+    
+    .add-questions-section {
+      .add-new-question-header {
+        background-color: grey;
+      }
+    }
   }
 }

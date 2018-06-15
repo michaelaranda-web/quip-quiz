@@ -46,8 +46,8 @@ router.get('/quizzes/new', function(req, res) {
 });
 
 router.post('/quizzes/', function(req, res) {
-  console.log(req.body.name);
-  console.log(req.body.description);
+  console.log("Name: ", req.body.name);
+  console.log("Description: ", req.body.description);
   // console.log(req.body.questions);
   
   res.send("Posted to /quizzes successfully!");

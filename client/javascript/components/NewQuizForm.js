@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import { setStateOnInputChange } from '../helpers/reactHelpers.js';
+import { AddQuestionsSection } from './AddQuestionsSection.js';
 
 export class NewQuizForm extends React.Component {
   constructor(props) {
@@ -25,6 +26,11 @@ export class NewQuizForm extends React.Component {
           <textarea id="quiz-description" name="description" onChange={this.handleInputChange}/>
         </div>
         
+        <h3>Questions</h3>
+        <AddQuestionsSection
+          onQuestionAdd={this.onQuestionAdd.bind(this)}
+        />
+        
         <button>Submit</button>
       </form>
     )
@@ -41,7 +47,6 @@ export class NewQuizForm extends React.Component {
         description: this.state.description
       },
       success: function(data) {
-        console.log(data);
         console.log("success!");
       }.bind(this),
       error: function(xhr, status, err) {
@@ -49,4 +54,18 @@ export class NewQuizForm extends React.Component {
       }.bind(this)
     });
   }
+  
+  onQuestionAdd(question) {
+    this.setState({
+      questions: this.setState.questions.concat(question)
+    });
+  }
+  
+  // onQuestionRemove(questionToRemove) {
+    // this.setState({
+    //   questions: this.setState.questions.filter((question) => {
+    //     question.id === questionToRemove.id
+    //   })
+    // });
+  // }
 }
