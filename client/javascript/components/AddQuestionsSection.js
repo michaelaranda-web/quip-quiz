@@ -72,6 +72,8 @@ export class AddQuestionsSection extends React.Component {
       questions: this.state.questions.concat(question)
     });
     
+    this.props.onQuestionAdd(question);
+    
     this.showQuestionEditorSection(false);
   }
   

@@ -48,7 +48,7 @@ router.get('/quizzes/new', function(req, res) {
 router.post('/quizzes/', function(req, res) {
   console.log("Name: ", req.body.name);
   console.log("Description: ", req.body.description);
-  // console.log(req.body.questions);
+  console.log("Questions: ", req.body.questions);
   
   res.send("Posted to /quizzes successfully!");
   // //Test MongoDB connection

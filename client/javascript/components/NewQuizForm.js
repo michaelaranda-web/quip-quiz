@@ -9,7 +9,8 @@ export class NewQuizForm extends React.Component {
     
     this.state = {
       name: '',
-      description: ''
+      description: '',
+      questions: []
     }
     this.handleInputChange = setStateOnInputChange.bind(this);
   }
@@ -44,7 +45,8 @@ export class NewQuizForm extends React.Component {
       type: 'POST',
       data: {
         name: this.state.name,
-        description: this.state.description
+        description: this.state.description,
+        questions: this.state.questions
       },
       success: function(data) {
         console.log("success!");
@@ -57,7 +59,7 @@ export class NewQuizForm extends React.Component {
   
   onQuestionAdd(question) {
     this.setState({
-      questions: this.setState.questions.concat(question)
+      questions: this.state.questions.concat(question)
     });
   }
   
