@@ -19,7 +19,8 @@
   },
   "scripts": {
     "start": "node server/server.js",
-    "build": "webpack --config webpack.config.js",
+    "build": "npm run clean && webpack --config webpack.config.js",
+    "clean": "rm -rf public",
     "dev": "NODE_ENV=development nodemon server/server.js",
     "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress"
   },
