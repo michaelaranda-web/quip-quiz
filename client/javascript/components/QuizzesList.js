@@ -2,17 +2,37 @@ import React from 'react';
 import $ from 'jquery';
 
 export class QuizzesList extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      quizzes: []  
+    }
+  }
+  
   componentDidMount() {
-    $.get("/api/quizzes", (data, status) => {
-      console.log(data);
-      console.log(status);
+    var self = this;
+    
+    $.get("/api/quizzes", (data) => {
+      self.setState({
+        quizzes: data
+      })
     });
   }
   
   render() {
     return (
       <div id="quizzes-list">
-        Quizzes List
+        {
+          this.state.quizzes.map((quiz, i) => {
+            return (
+              <div className="quiz-item" key={i}>
+                <h3>{quiz.name}</h3>
+                <p>{quiz.description}</p>
+              </div>
+            )
+          })
+        }
       </div>
     )
   }
