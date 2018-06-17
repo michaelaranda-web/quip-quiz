@@ -35,7 +35,8 @@ export class QuestionEditor extends React.Component {
         choiceValue={choiceValue}
         onInputChange={this.updateChoiceText}
         onCheckboxSelect={this.updateAnswer}
-        isRightAnswer={this.state.answer === choiceValue}
+        checked={this.state.answer === choiceValue}
+        editMode={true}
       /> 
     });
   }

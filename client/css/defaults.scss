@@ -1,4 +1,13 @@
-$mobile-max: 768px;
+$mobile-max: 767px;
+$tablet-portrait-min: 768px;
+
+html {
+  height: 100%;
+}
+
+body {
+  height: inherit;
+}
 
 h1 {
   font-size: 36px;

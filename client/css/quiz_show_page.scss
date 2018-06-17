@@ -1,0 +1,12 @@
+#quiz-show-page {
+  .quiz-container {
+    min-height: 100%;
+    background-color: white;
+    
+    @media (min-width: $tablet-portrait-min) {
+      margin: 0 auto;
+      min-width: 700px;
+      max-width: 900px;
+    }
+  }
+}
