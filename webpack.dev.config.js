@@ -5,7 +5,8 @@ module.exports = {
     home: './client/javascript/home.js',
     quizNew: './client/javascript/quizNew.js',
     quizIndex: './client/javascript/quizIndex.js',
-    quizShow: './client/javascript/quizShow.js'
+    quizShow: './client/javascript/quizShow.js',
+    quizResults: './client/javascript/quizResults.js'
   },
   output: { 
     path: '/',

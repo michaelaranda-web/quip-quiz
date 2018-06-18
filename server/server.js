@@ -28,6 +28,7 @@ var databaseSetup = require("./database.js").databaseSetup;
 databaseSetup();
 
 var QuizModel = require("./models/quiz.js");
+var QuizResultModel = require("./models/quizResult.js");
 
 /**************************************************************
  * Routes
@@ -50,6 +51,10 @@ router.get('/quizzes/new', function(req, res) {
 //MATCHES WITH quizzes/new, NEEDS TO COME AFTER!
 router.get('/quizzes/:quiz_id', function(req, res) {
   res.sendFile(getPage('/quizzes/show.html'));
+});
+
+router.get('/quizzes/:quiz_id/results', function(req, res) {
+  res.sendFile(getPage('/quizzes/results.html'));
 });
 
 router.post('/quizzes/', function(req, res) {
@@ -91,6 +96,41 @@ router.get('/api/quizzes/:quiz_id', function(req, res) {
     res.send(quiz);
   })
 });
+
+router.post('/api/quizzes/:quiz_id/submit', function(req, res) {
+  var quizId = req.params.quiz_id;
+  var responses = req.body.responses;
+  
+  QuizModel.findById(quizId, (err, quiz) => {
+    if (err) handleError(res, err.message);
+    
+    var quizResults = quiz.questions.map((question, i) => {
+      var correctResponse = false;
+      
+      if (question.answer === responses[i]) {
+        correctResponse = true;
+      }
+      
+      return { 
+        response: responses[i],
+        correctAnswer: question.answer,
+        correctResponse: correctResponse
+      }
+    });
+    
+    var quizResultInstance = new QuizResultModel({
+      quiz: quizId, 
+      results: quizResults
+    });
+    
+    quizResultInstance.save(function (err) {
+      if (err) handleError(res, err.message, "Failed to submit quiz.");
+      res.send({
+        redirectPath: `/quizzes/${quizId}/results`
+      });
+    });
+  })
+})
 
 /**************************************************************
  * Server Start

@@ -13,6 +13,7 @@ export class QuizShowPage extends React.Component {
     }
     
     this.onChoiceSelect = this.onChoiceSelect.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
   
   componentDidMount() {
@@ -25,12 +26,6 @@ export class QuizShowPage extends React.Component {
         quiz: data
       })
     });
-  }
-  
-  onChoiceSelect(questionNumber, choiceValue) {
-    let newState = Object.assign({}, this.state);
-    newState.responses[questionNumber] = choiceValue;
-    this.setState(newState);
   }
   
   render() {
@@ -57,12 +52,40 @@ export class QuizShowPage extends React.Component {
               })
             }
             
-            <button>Submit</button>
+            <button onClick={self.onSubmit}>Submit</button>
           </div>
         </div>
       )
     } else {
       return null;
     }
+  }
+  
+  onChoiceSelect(questionNumber, choiceValue) {
+    let newState = Object.assign({}, this.state);
+    newState.responses[questionNumber] = choiceValue;
+    this.setState(newState);
+  }
+  
+  onSubmit(event) {
+    event.preventDefault();
+    
+    $.ajax({
+      url: `/api/quizzes/${this.state.quiz._id}/submit`,
+      type: 'POST',
+      data: {
+        responses: this.state.responses
+      },
+      success: function(data) {
+        if (data.redirectPath) {
+          window.location.href = data.redirectPath;
+        } else {
+          console.log("success!");
+        }
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
   }
 }
