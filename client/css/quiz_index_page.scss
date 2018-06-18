@@ -1,7 +1,9 @@
-#quiz-new-page {
-  .add-questions-section {
-    .add-new-question-header {
-      background-color: grey;
+#quiz-index-page {
+  .quiz-item {
+    cursor: pointer;
+    
+    &:hover {
+      color: #2b6369;
     }
   }
 }
