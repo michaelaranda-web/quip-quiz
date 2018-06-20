@@ -123,14 +123,32 @@ router.post('/api/quizzes/:quiz_id/submit', function(req, res) {
       results: quizResults
     });
     
-    quizResultInstance.save(function (err) {
+    quizResultInstance.save(function (err, result) {
       if (err) handleError(res, err.message, "Failed to submit quiz.");
       res.send({
+        quizResultId: result._id,
         redirectPath: `/quizzes/${quizId}/results`
       });
     });
   })
 })
+
+router.get('/api/quiz_results/:quiz_result_id', function(req, res) {
+  var quizResultId = req.params.quiz_result_id;
+  
+  QuizResultModel.findById(quizResultId, (err, quizResult) => {
+    if (err) handleError(res, err.message);
+    
+    QuizModel.findById(quizResult.quiz, (err, quiz) => {
+      if (err) handleError(res, err.message);
+      
+      res.send({
+        quiz: quiz,
+        quizResult: quizResult.results
+      });
+    })
+  })
+});
 
 /**************************************************************
  * Server Start

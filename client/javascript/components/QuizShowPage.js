@@ -77,6 +77,8 @@ export class QuizShowPage extends React.Component {
         responses: this.state.responses
       },
       success: function(data) {
+        sessionStorage.setItem('quiz_result_id', data.quizResultId);
+        
         if (data.redirectPath) {
           window.location.href = data.redirectPath;
         } else {
