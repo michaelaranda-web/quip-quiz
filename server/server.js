@@ -104,27 +104,38 @@ router.post('/api/quizzes/:quiz_id/submit', function(req, res) {
   QuizModel.findById(quizId, (err, quiz) => {
     if (err) handleError(res, err.message);
     
-    var quizResults = quiz.questions.map((question, i) => {
+    var numCorrect = 0;
+    var quizResponses = quiz.questions.map((question, i) => {
       var answeredCorrectly = false;
       
       if (question.answer === responses[i]) {
+        numCorrect++;
         answeredCorrectly = true;
       }
       
       return { 
         response: question.choices[responses[i]],
         correctAnswer: question.choices[question.answer],
-        answeredCorrectly: answeredCorrectly
+        answeredCorrectly: answeredCorrectly,
       }
     });
     
+    var overallResults = {
+      numQuestions: quiz.questions.length,
+      numCorrect: numCorrect
+    };
+    
     var quizResultInstance = new QuizResultModel({
       quiz: quizId, 
-      results: quizResults
+      responses: quizResponses,
+      overallResults: overallResults
     });
     
     quizResultInstance.save(function (err, result) {
       if (err) handleError(res, err.message, "Failed to submit quiz.");
+      
+      console.log(result);
+      
       res.send({
         quizResultId: result._id,
         redirectPath: `/quizzes/${quizId}/results`
@@ -144,7 +155,8 @@ router.get('/api/quiz_results/:quiz_result_id', function(req, res) {
       
       res.send({
         quiz: quiz,
-        quizResult: quizResult.results
+        responses: quizResult.responses,
+        overallResults: quizResult.overallResults,
       });
     })
   })

@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 
 var QuizResultSchema = new mongoose.Schema({
   quiz: mongoose.Schema.Types.ObjectId,
-  results: []
+  responses: [],
+  overallResults: mongoose.Schema.Types.Mixed
 });
 
 var QuizResultModel = mongoose.model('quiz_result', QuizResultSchema);

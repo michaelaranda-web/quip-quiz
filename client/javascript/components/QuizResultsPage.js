@@ -7,7 +7,8 @@ export class QuizResultsPage extends React.Component {
     
     this.state = {
       quiz: null,
-      results: null
+      responses: null,
+      overallResults: null
     }
   }
   
@@ -19,7 +20,8 @@ export class QuizResultsPage extends React.Component {
     $.get(`/api/quiz_results/${quizResultId}`, (data) => {
       self.setState({
         quiz: data.quiz,
-        results: data.quizResult
+        responses: data.responses,
+        overallResults: data.overallResults
       })
     });
   }
@@ -28,23 +30,37 @@ export class QuizResultsPage extends React.Component {
     var quiz = this.state.quiz;
     
     //A lot of this data should be organized as part of presenting the response, server-side
-    return this.state.results.map((result, i) => {
+    return this.state.responses.map((response, i) => {
       return (
         <div className="result" key={i}>
           <p>{`Question ${quiz.questions[i].text}`}</p>
-          <p>{`Your response was: ${result.response}`}</p>
-          <p>{`The correct response was: ${result.correctAnswer}`}</p>
-          <p>{`You answered ${result.answeredCorrectly ? 'correctly' : 'incorrectly'}!`}</p>
+          <p>{`Your response was: ${response.response}`}</p>
+          <p>{`The correct response was: ${response.correctAnswer}`}</p>
+          <p>{`You answered ${response.answeredCorrectly ? 'correctly' : 'incorrectly'}!`}</p>
         </div>
       )
     })
   }
   
+  renderScore() {
+    var overallResults = this.state.overallResults;
+    var numCorrect = overallResults.numCorrect;
+    var numQuestions = overallResults.numQuestions;
+    
+    var quizScore = numCorrect / numQuestions;
+    var quizScoreTwoDecimals = quizScore.toFixed(2);
+    
+    return (
+      <div className="score">
+        <p>Score: <span>{quizScoreTwoDecimals}% </span><span>({numCorrect}/{numQuestions})</span></p>
+      </div>
+    )
+  }
+  
   render() {
     var quiz = this.state.quiz;
-    var results = this.state.results;
     
-    if (quiz && results) {
+    if (quiz) {
       return (
         <div id="quiz-results-page">
           <h1>{quiz.name}</h1>
@@ -52,6 +68,7 @@ export class QuizResultsPage extends React.Component {
           
           <h4>Results</h4>
           {this.renderResults()}
+          {this.renderScore()}
         </div>
       )
     } else {
