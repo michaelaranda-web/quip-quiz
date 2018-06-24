@@ -34,7 +34,7 @@ export class QuizResultsPage extends React.Component {
           <p>{`Question ${quiz.questions[i].text}`}</p>
           <p>{`Your response was: ${result.response}`}</p>
           <p>{`The correct response was: ${result.correctAnswer}`}</p>
-          <p>{`You answered ${result.correctResponse ? 'correctly' : 'incorrectly'}!`}</p>
+          <p>{`You answered ${result.answeredCorrectly ? 'correctly' : 'incorrectly'}!`}</p>
         </div>
       )
     })

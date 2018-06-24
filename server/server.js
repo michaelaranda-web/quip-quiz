@@ -105,16 +105,16 @@ router.post('/api/quizzes/:quiz_id/submit', function(req, res) {
     if (err) handleError(res, err.message);
     
     var quizResults = quiz.questions.map((question, i) => {
-      var correctResponse = false;
+      var answeredCorrectly = false;
       
       if (question.answer === responses[i]) {
-        correctResponse = true;
+        answeredCorrectly = true;
       }
       
       return { 
-        response: responses[i],
-        correctAnswer: question.answer,
-        correctResponse: correctResponse
+        response: question.choices[responses[i]],
+        correctAnswer: question.choices[question.answer],
+        answeredCorrectly: answeredCorrectly
       }
     });
     
