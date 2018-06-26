@@ -49,13 +49,20 @@ export class QuestionEditor extends React.Component {
           <input type="text" id="new-question-text" name="value" onChange={this.handleInputChange} value={this.state.value} />
         </div>
         {this.renderChoices()}
-        <div className="add-new-choice" onClick={this.addNewChoice}>
-          Add new choice <span>+</span>
-        </div>
         
-        <a onClick={this.onSubmitQuestion}>
-          Save
-        </a>
+        <div className="buttons-row">
+          <a className="button add-new-choice" onClick={this.addNewChoice}>
+            Add new choice
+          </a>
+          
+          <a className="button cancel-button" onClick={() => {this.props.onCancelClick()}}>
+            Cancel
+          </a>
+          
+          <a className="button save-button" onClick={this.onSubmitQuestion}>
+            Save
+          </a>
+        </div>
       </div>
     )
   }

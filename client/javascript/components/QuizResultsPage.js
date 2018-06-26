@@ -33,10 +33,10 @@ export class QuizResultsPage extends React.Component {
     return this.state.responses.map((response, i) => {
       return (
         <div className="result" key={i}>
-          <p>{`Question ${quiz.questions[i].text}`}</p>
-          <p>{`Your response was: ${response.response}`}</p>
-          <p>{`The correct response was: ${response.correctAnswer}`}</p>
-          <p>{`You answered ${response.answeredCorrectly ? 'correctly' : 'incorrectly'}!`}</p>
+          <p className="question">{`Question ${i+1}: ${quiz.questions[i].text}`}</p>
+          <p className="response">{`Your response was: ${response.response}`}</p>
+          <p className="correct-answer">{`The correct response was: ${response.correctAnswer}`}</p>
+          <p className="answer-message">{`You answered ${response.answeredCorrectly ? 'correctly' : 'incorrectly'}!`}</p>
         </div>
       )
     })
@@ -63,12 +63,14 @@ export class QuizResultsPage extends React.Component {
     if (quiz) {
       return (
         <div id="quiz-results-page">
-          <h1>{quiz.name}</h1>
-          <h3>{quiz.description}</h3>
-          
-          <h4>Results</h4>
-          {this.renderResults()}
-          {this.renderScore()}
+          <div className="results-container">
+            <h1>{quiz.name}</h1>
+            <h4>{quiz.description}</h4>
+            
+            <h2>Results</h2>
+            {this.renderResults()}
+            {this.renderScore()}
+          </div>
         </div>
       )
     } else {

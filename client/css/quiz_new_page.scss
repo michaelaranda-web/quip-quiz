@@ -1,7 +1,70 @@
 #quiz-new-page {
-  .add-questions-section {
-    .add-new-question-header {
-      background-color: grey;
+  #new-quiz-form {
+    margin-top: 15px;
+    
+    label {
+      padding-right: 5px;
+    }
+    
+    input {
+      flex-grow: 1;
+    }
+    
+    .field {
+      display: flex;
+      padding: 5px 0;
+      
+      &.name-field, &.description-field {
+        flex-direction: column;
+      }
+      
+      #quiz-name {
+        font-family: inherit;
+        padding: 5px;
+        margin-top: 5px;
+      }
+      
+      #quiz-description {
+        display: block;
+        resize: none;
+        height: 35px;
+        padding: 5px;
+        margin-top: 5px;
+        font-family: inherit;
+      }
+    }
+    
+    .add-questions-section-header {
+      font-size: 24px;
+      margin: 10px 0 5px;
+    }
+    
+    .add-questions-section {
+      .add-new-question-header {
+        background-color: grey;
+      }
+      
+      .question-editor-section {
+        .choice {
+          .choice-value {
+            display: inline-block;
+            min-width: 15px;
+          }
+          
+          input {
+            flex-grow: 0;
+          }
+        }
+        
+        .buttons-row {
+          padding: 15px 0;
+        }
+      }
+    }
+    
+    .submit-button-row {
+      text-align: right;
+      margin: 10px 0;
     }
   }
 }

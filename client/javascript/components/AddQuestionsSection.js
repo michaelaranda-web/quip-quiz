@@ -25,6 +25,7 @@ export class AddQuestionsSection extends React.Component {
         <QuestionEditor 
           onQuestionAdd={this.onQuestionAdd}
           onQuestionRemove={this.onQuestionRemove}
+          onCancelClick={() => {this.showQuestionEditorSection(false)}}
         />
       )
     }
@@ -58,14 +59,22 @@ export class AddQuestionsSection extends React.Component {
     )
   }
   
+  renderAddNewQuestion() {
+    if (!this.state.editingQuestion) {
+      return (
+        <div className="add-new-question-header" onClick={() => {this.showQuestionEditorSection(true)}}>
+          Add new question <span>+</span>
+        </div>  
+      )
+    }
+  }
+  
   render() {
     return (
       <div className="add-questions-section">
         {this.renderQuestions()}
         {this.renderQuestionEditorSection()}
-        <div className="add-new-question-header" onClick={() => {this.showQuestionEditorSection(true)}}>
-          Add new question <span>+</span>
-        </div>
+        {this.renderAddNewQuestion()}
       </div>
     )
   }

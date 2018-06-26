@@ -17,22 +17,23 @@ export class NewQuizForm extends React.Component {
   
   render() {
     return (
-      <form id="new-quiz-form" onSubmit={this.onSubmit.bind(this)}>
-        <div className="field">
+      <form id="new-quiz-form">
+        <div className="field name-field">
           <label htmlFor="quiz-name">Name</label>
           <input type="text" id="quiz-name" name="name" onChange={this.handleInputChange}/>
         </div>
-        <div className="field">
+        <div className="field description-field">
           <label htmlFor="quiz-description">Description</label>
           <textarea id="quiz-description" name="description" onChange={this.handleInputChange}/>
         </div>
         
-        <h3>Questions</h3>
+        <h3 className="add-questions-section-header">Questions</h3>
         <AddQuestionsSection
           onQuestionAdd={this.onQuestionAdd.bind(this)}
         />
-        
-        <button>Submit</button>
+        <div className="submit-button-row">
+          <a className="button save-button" onClick={this.onSubmit.bind(this)}>Submit</a>
+        </div>
       </form>
     )
   }

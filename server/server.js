@@ -134,8 +134,6 @@ router.post('/api/quizzes/:quiz_id/submit', function(req, res) {
     quizResultInstance.save(function (err, result) {
       if (err) handleError(res, err.message, "Failed to submit quiz.");
       
-      console.log(result);
-      
       res.send({
         quizResultId: result._id,
         redirectPath: `/quizzes/${quizId}/results`

@@ -2,11 +2,26 @@
   .quiz-container {
     min-height: 100%;
     background-color: white;
+    padding: 0 10px;
     
     @media (min-width: $tablet-portrait-min) {
       margin: 0 auto;
       min-width: 700px;
       max-width: 900px;
+    }
+    
+    h4 {
+      margin-bottom: 20px;
+      color: grey;
+    }
+    
+    .question {
+      padding: 10px 0;
+    }
+    
+    .buttons-row {
+      text-align: right;
+      padding: 25px 5px;
     }
   }
 }

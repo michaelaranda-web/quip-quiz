@@ -1,9 +1,24 @@
 #quiz-index-page {
   .quiz-item {
     cursor: pointer;
+    padding: 10px 2px;
     
     &:hover {
       color: #2b6369;
+      
+      p {
+        color: #2b6369;
+      }
+    }
+    
+    h3 {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+    
+    p {
+      font-size: 14px;
+      color: #807777;
     }
   }
 }

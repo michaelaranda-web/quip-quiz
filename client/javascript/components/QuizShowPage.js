@@ -36,7 +36,7 @@ export class QuizShowPage extends React.Component {
       return (
         <div id="quiz-show-page">
           <div className="quiz-container">
-            <h2>{quiz.name}</h2>
+            <h1>{quiz.name}</h1>
             <h4>{quiz.description}</h4>
             
             {
@@ -52,7 +52,9 @@ export class QuizShowPage extends React.Component {
               })
             }
             
-            <button onClick={self.onSubmit}>Submit</button>
+            <div className="buttons-row">
+              <a className="button save-button" onClick={self.onSubmit}>Submit</a>
+            </div>
           </div>
         </div>
       )

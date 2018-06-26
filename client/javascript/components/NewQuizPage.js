@@ -9,7 +9,7 @@ export class NewQuizPage extends React.Component {
           <div className="top-row">
             {"<"}
           </div>
-          <h2>New Quiz Form</h2>
+          <h1>Create a New Quiz</h1>
           <NewQuizForm />
         </div>
       </div>

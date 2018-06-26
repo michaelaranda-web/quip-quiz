@@ -21,7 +21,7 @@ export class QuestionChoice extends React.Component {
   
   renderChoiceValue() {
     if (this.props.editMode) {
-      return <span>{this.props.choiceValue}</span>
+      return <label className="choice-value">{this.props.choiceValue}</label>
     }
   }
   
