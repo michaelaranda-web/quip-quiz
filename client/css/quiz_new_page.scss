@@ -40,8 +40,12 @@
     }
     
     .add-questions-section {
-      .add-new-question-header {
-        background-color: grey;
+      .add-new-question-button {
+        margin: 5px 0;
+      }
+      
+      .questions-section {
+        padding: 10px 0 20px;
       }
       
       .question-editor-section {

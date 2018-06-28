@@ -32,13 +32,17 @@ export class AddQuestionsSection extends React.Component {
   }
   
   renderQuestions() {
+    if (this.state.questions.length === 0) {
+      return null;  
+    }
+    
     return (
       <div className="questions-section">
         {
           this.state.questions.map((question, i) => {
             return (
               <div className={`question-${i+1}`} key={i}>
-                <h4>{`Question ${i+1}: ${question.text}`}</h4>
+                <p className="question">{`Question ${i+1}: ${question.text}`}</p>
                 {
                   Object.entries(question.choices).map((choice, i) => {
                     var rightAnswer = choice[0] === question.answer;
@@ -46,7 +50,7 @@ export class AddQuestionsSection extends React.Component {
                     
                     return (
                       <div className="choice" key={i}>
-                        {`${choice[0]} ${choice[1]}`} {checkmark}
+                        {choice[1]} {checkmark}
                       </div>
                     ) 
                   })
@@ -62,9 +66,9 @@ export class AddQuestionsSection extends React.Component {
   renderAddNewQuestion() {
     if (!this.state.editingQuestion) {
       return (
-        <div className="add-new-question-header" onClick={() => {this.showQuestionEditorSection(true)}}>
-          Add new question <span>+</span>
-        </div>  
+        <a className="button add-new-question-button" onClick={() => {this.showQuestionEditorSection(true)}}>
+          Add new question
+        </a>  
       )
     }
   }

@@ -29,8 +29,11 @@ export class QuizzesList extends React.Component {
           this.state.quizzes.map((quiz, i) => {
             return (
               <div className="quiz-item" key={i} onClick={() => this.visitQuiz(quiz._id)}>
-                <h3>{quiz.name}</h3>
-                <p>{quiz.description}</p>
+                <div className="side-icon fa fa-fw fa-chevron-right"></div>
+                <div className="quiz-details">
+                  <h3>{quiz.name}</h3>
+                  <p>{quiz.description}</p>
+                </div>
               </div>
             )
           })

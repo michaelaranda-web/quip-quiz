@@ -15,8 +15,12 @@
       color: grey;
     }
     
-    .question {
+    .question-item {
       padding: 10px 0;
+      
+      .question {
+        margin-bottom: 5px;
+      }
     }
     
     .buttons-row {

@@ -38,7 +38,7 @@ a, a:visited, a:hover, a:active {
   cursor: pointer;
   
   &.save-button {
-    background-color: #80b8ff;
+    background-color: #42a0e2;
     
     &:hover {
       background-color: #cadef3;
@@ -47,5 +47,6 @@ a, a:visited, a:hover, a:active {
   
   &:hover {
     background-color: #8b8c8e;
+    color: white;
   }
 }

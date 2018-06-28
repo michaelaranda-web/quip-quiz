@@ -16,8 +16,8 @@ export class Question extends React.Component {
     var self = this;
     
     return  (
-      <div className="question">
-        <h4>{`Question ${this.props.questionNumber+1}: ${this.props.question.text}`}</h4>
+      <div className="question-item">
+        <p className="question">{`Question ${this.props.questionNumber+1}: ${this.props.question.text}`}</p>
         {
           Object.entries(this.props.question.choices).map((choice, i) => {
             var choiceValue = choice[0];
