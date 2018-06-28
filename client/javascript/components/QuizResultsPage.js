@@ -47,7 +47,7 @@ export class QuizResultsPage extends React.Component {
     var numCorrect = overallResults.numCorrect;
     var numQuestions = overallResults.numQuestions;
     
-    var quizScore = numCorrect / numQuestions;
+    var quizScore = numCorrect / numQuestions * 100;
     var quizScoreTwoDecimals = quizScore.toFixed(2);
     
     return (
