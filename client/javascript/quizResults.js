@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styles from '../css/index.scss';
+import styles from '../css/quiz_results_page.scss';
 import { QuizResultsPage } from './components/QuizResultsPage';
 import { init } from './helpers/appInit';
 

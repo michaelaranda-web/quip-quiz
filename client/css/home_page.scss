@@ -1,3 +1,12 @@
+@import 'colors';
+@import 'resets';
+@import 'defaults';
+@import 'pages_common';
+
+html {
+  background-color: white;
+}
+
 #home-page {
   .header-section {
     background-color: $page-background-blue;
