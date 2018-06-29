@@ -55,7 +55,7 @@ export class QuestionEditor extends React.Component {
             Add new choice
           </a>
           
-          <a className="button cancel-button" onClick={() => {this.props.onCancelClick()}}>
+          <a className="button cancel-button" onClick={this.props.onCancelClick}>
             Cancel
           </a>
           

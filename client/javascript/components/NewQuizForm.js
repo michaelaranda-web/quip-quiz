@@ -29,7 +29,9 @@ export class NewQuizForm extends React.Component {
         
         <h3 className="add-questions-section-header">Questions</h3>
         <AddQuestionsSection
+          questions={this.state.questions}
           onQuestionAdd={this.onQuestionAdd.bind(this)}
+          onQuestionRemove={this.removeQuestion.bind(this)}
         />
         <div className="submit-button-row">
           <a className="button save-button" onClick={this.onSubmit.bind(this)}>Submit</a>
@@ -64,11 +66,11 @@ export class NewQuizForm extends React.Component {
     });
   }
   
-  // onQuestionRemove(questionToRemove) {
-    // this.setState({
-    //   questions: this.setState.questions.filter((question) => {
-    //     question.id === questionToRemove.id
-    //   })
-    // });
-  // }
+  removeQuestion(index) {
+    this.setState({
+      questions: this.state.questions.filter((question, i) => {
+        return index != i;
+      })
+    });
+  }
 }

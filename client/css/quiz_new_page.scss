@@ -51,6 +51,15 @@
       
       .questions-section {
         padding: 10px 0 20px;
+        
+        .close-icon {
+          float: right;
+          cursor: pointer;
+          
+          @media (max-width: $mobile-max) {
+            font-size: 22px;
+          }
+        }
       }
       
       .question-editor-section {

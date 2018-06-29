@@ -7,12 +7,10 @@ export class AddQuestionsSection extends React.Component {
     super(props);
     
     this.state = {
-      questions: [],
       editingQuestion: false
     }
     
     this.onQuestionAdd = this.onQuestionAdd.bind(this);
-    // this.onQuestionRemove = this.onQuestionRemove.bind(this);
   }
   
   showQuestionEditorSection(show) {
@@ -24,7 +22,6 @@ export class AddQuestionsSection extends React.Component {
       return (
         <QuestionEditor 
           onQuestionAdd={this.onQuestionAdd}
-          onQuestionRemove={this.onQuestionRemove}
           onCancelClick={() => {this.showQuestionEditorSection(false)}}
         />
       )
@@ -32,16 +29,17 @@ export class AddQuestionsSection extends React.Component {
   }
   
   renderQuestions() {
-    if (this.state.questions.length === 0) {
+    if (this.props.questions.length === 0) {
       return null;  
     }
     
     return (
       <div className="questions-section">
         {
-          this.state.questions.map((question, i) => {
+          this.props.questions.map((question, i) => {
             return (
-              <div className={`question-${i+1}`} key={i}>
+              <div className={`question-${i+1}`} key={i} onClick={() => { this.props.onQuestionRemove(i) }}>
+                <div className="close-icon fa fa-fw fa-times-circle"></div>
                 <p className="question">{`Question ${i+1}: ${question.text}`}</p>
                 {
                   Object.entries(question.choices).map((choice, i) => {
@@ -84,22 +82,7 @@ export class AddQuestionsSection extends React.Component {
   }
   
   onQuestionAdd(question) {
-    this.setState({
-      questions: this.state.questions.concat(question)
-    });
-    
     this.props.onQuestionAdd(question);
-    
     this.showQuestionEditorSection(false);
   }
-  
-  // onQuestionRemove(questionToRemove) {
-  //   this.setState({
-  //     questions: this.setState.questions.filter((question) => {
-  //       question.id === questionToRemove.id
-  //     })
-  //   });
-    
-  //   this.props.onQuestionRemove(questionToRemove);
-  // }
 }
