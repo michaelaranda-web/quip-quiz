@@ -22,3 +22,13 @@
     padding: 0 10px;
   }
 }
+
+.nav-back-arrow {
+  font-size: 24px;
+  padding: 10px 0;
+  cursor: pointer;
+  
+  &:hover {
+    color: #403e3e;;
+  }
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import { Question } from './Question';
-import { QuestionChoice } from './QuestionChoice';
+import { NavBackArrow } from './NavBackArrow';
 
 export class QuizShowPage extends React.Component {
   constructor(props) {
@@ -36,6 +36,7 @@ export class QuizShowPage extends React.Component {
       return (
         <div id="quiz-show-page">
           <div className="quiz-container">
+            <NavBackArrow redirectPath={'/quizzes'}/>
             <h1>{quiz.name}</h1>
             <h4>{quiz.description}</h4>
             
