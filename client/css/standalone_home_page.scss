@@ -1,0 +1,43 @@
+@import 'resets';
+
+$page-background-blue: #115677;
+
+@import 'defaults';
+
+html {
+  background-color: white;
+}
+
+#home-page {
+  .header-section {
+    background-color: $page-background-blue;
+    color: white;
+    text-align: center;
+    
+    h1 {
+      font-size: 66px;
+      padding: 100px 0 30px;
+    }
+    
+    h3 {
+      padding-bottom: 50px;
+    }
+  }
+  
+  .content-section {
+    display: flex;
+    justify-content: center;
+    
+    .button-container {
+      margin: 0 20px;
+      text-align: center;
+      
+      .home-page-button {
+        padding: .8em 1.2em;
+        background-color: #E6E6E6;
+        text-decoration: none;
+        border-radius: 2px;
+      } 
+    }
+  }
+}
