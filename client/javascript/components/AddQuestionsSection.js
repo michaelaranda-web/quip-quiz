@@ -38,8 +38,8 @@ export class AddQuestionsSection extends React.Component {
         {
           this.props.questions.map((question, i) => {
             return (
-              <div className={`question-${i+1}`} key={i} onClick={() => { this.props.onQuestionRemove(i) }}>
-                <div className="close-icon fa fa-fw fa-times-circle"></div>
+              <div className={`question-item question-${i+1}`} key={i}>
+                <div className="close-icon fa fa-fw fa-times-circle" onClick={() => { this.props.onQuestionRemove(i) }}></div>
                 <p className="question">{`Question ${i+1}: ${question.text}`}</p>
                 {
                   Object.entries(question.choices).map((choice, i) => {

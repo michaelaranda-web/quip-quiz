@@ -52,7 +52,11 @@ export class NewQuizForm extends React.Component {
         questions: this.state.questions
       },
       success: function(data) {
-        console.log("success!");
+        if (data.redirectPath) {
+          window.location.href = data.redirectPath;
+        } else {
+          console.log("success!");
+        }
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());

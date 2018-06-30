@@ -46,18 +46,31 @@
     
     .add-questions-section {
       .add-new-question-button {
-        margin: 5px 0;
+        margin: 10px 0;
       }
       
       .questions-section {
         padding: 10px 0 20px;
         
-        .close-icon {
-          float: right;
-          cursor: pointer;
+        .question-item {
+          padding: 5px 0;
           
-          @media (max-width: $mobile-max) {
-            font-size: 22px;
+          .question {
+            margin-bottom: 5px;
+          }
+          
+          .choice {
+            font-size: 16px;
+            padding: 2px 0;
+          }
+          
+          .close-icon {
+            float: right;
+            cursor: pointer;
+            
+            @media (max-width: $mobile-max) {
+              font-size: 22px;
+            }
           }
         }
       }
