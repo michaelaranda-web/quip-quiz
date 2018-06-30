@@ -32,6 +32,7 @@ export class NewQuizForm extends React.Component {
           questions={this.state.questions}
           onQuestionAdd={this.onQuestionAdd.bind(this)}
           onQuestionRemove={this.removeQuestion.bind(this)}
+          onQuestionsUpdated={this.updateQuestions.bind(this)}
         />
         <div className="submit-button-row">
           <a className="button save-button" onClick={this.onSubmit.bind(this)}>Submit</a>
@@ -75,6 +76,12 @@ export class NewQuizForm extends React.Component {
       questions: this.state.questions.filter((question, i) => {
         return index != i;
       })
+    });
+  }
+  
+  updateQuestions(updatedQuestions) {
+    this.setState({
+      questions: updatedQuestions
     });
   }
 }

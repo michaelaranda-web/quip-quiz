@@ -83,7 +83,7 @@ export class QuestionEditor extends React.Component {
   }
   
   onSubmitQuestion() {
-    this.props.onQuestionAdd({
+    this.props.onSave({
       text: this.state.value,
       choices: this.state.choices,
       answer: this.state.answer
