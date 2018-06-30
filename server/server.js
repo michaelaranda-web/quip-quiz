@@ -57,6 +57,9 @@ router.get('/quizzes/:quiz_id/results', function(req, res) {
   res.sendFile(getPage('/quizzes/results.html'));
 });
 
+/**************************************************************
+ * API Routes
+ *************************************************************/ 
 router.post('/quizzes/', function(req, res) {
   console.log("Name: ", req.body.name);
   console.log("Description: ", req.body.description);
@@ -71,19 +74,18 @@ router.post('/quizzes/', function(req, res) {
   
   quiz_instance.save(function (err) {
     if (err) handleError(res, err.message, "Failed to save quiz.");
-    res.send("Saved successfully!");
+    res.send({
+      redirectPath: `/quizzes`
+    });
   });
-  }
-)
-
-/**************************************************************
- * API Routes
- *************************************************************/ 
+}); 
+ 
 router.get('/api/quizzes', function(req, res) {
   QuizModel.find({}, (err, quizzes) => {
     if (err) return handleError(err);
     if (quizzes) {
-      res.send(quizzes);
+      var dateSortedQuizzes = quizzes.reverse();
+      res.send(dateSortedQuizzes);
     }
   });
 });
