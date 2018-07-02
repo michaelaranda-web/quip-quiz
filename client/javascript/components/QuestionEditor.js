@@ -8,14 +8,20 @@ export class QuestionEditor extends React.Component {
     
     this.alphabet = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ").split("");
     
-    this.state = {
-      value: '',
-      choices: {
-        "A": '',
-        "B": ''
-      },
-      answer: ''
-    }
+    this.state = !!this.props.question 
+      ? {
+        questionText: this.props.question.text,
+        choices: this.props.question.choices,
+        answer: this.props.question.answer
+      }
+      : {
+        questionText: "",
+        choices: {
+          "A": '',
+          "B": ''
+        },
+        answer: ""
+      }
     
     this.addNewChoice = this.addNewChoice.bind(this);
     this.updateChoiceText = this.updateChoiceText.bind(this);
@@ -46,7 +52,13 @@ export class QuestionEditor extends React.Component {
       <div className="question-editor-section">
         <div className="field">
           <label htmlFor="new-question-text">Question:</label>
-          <input type="text" id="new-question-text" name="value" onChange={this.handleInputChange} value={this.state.value} />
+          <input 
+            type="text" 
+            id="new-question-text" 
+            name="questionText" 
+            onChange={this.handleInputChange} 
+            value={this.state.questionText}
+          />
         </div>
         {this.renderChoices()}
         
@@ -84,7 +96,7 @@ export class QuestionEditor extends React.Component {
   
   onSubmitQuestion() {
     this.props.onSave({
-      text: this.state.value,
+      text: this.state.questionText,
       choices: this.state.choices,
       answer: this.state.answer
     });

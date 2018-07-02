@@ -32,6 +32,7 @@ export class QuestionChoice extends React.Component {
           type="text" 
           id={`choice-${this.props.choiceValue}`}
           value={this.props.choiceText}
+          placeholder={this.props.choiceText}
           onChange={this.onInputChange.bind(this)}
         />  
       )

@@ -37,6 +37,7 @@ export class AddQuestionsSection extends React.Component {
             if (i === this.state.savedQuestionEditing) {
               return <QuestionEditor 
                 key={i}
+                question={question}
                 onSave={(updatedQuestion) => this.onQuestionUpdate(i, updatedQuestion)}
                 onCancelClick={() => this.closeSavedQuestionEditor()}
               />
