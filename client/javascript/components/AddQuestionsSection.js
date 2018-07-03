@@ -19,7 +19,7 @@ export class AddQuestionsSection extends React.Component {
       return (
         <QuestionEditor
           onSave={this.onQuestionAdd}
-          onCancelClick={() => {this.showQuestionEditorSection(false)}}
+          onCancelClick={() => {this.onQuestionEditorClose()}}
         />
       )
     }
@@ -39,7 +39,7 @@ export class AddQuestionsSection extends React.Component {
                 key={i}
                 question={question}
                 onSave={(updatedQuestion) => this.onQuestionUpdate(i, updatedQuestion)}
-                onCancelClick={() => this.closeSavedQuestionEditor()}
+                onCancelClick={() => this.onSavedQuestionEditorClose()}
               />
             }
             
@@ -71,7 +71,7 @@ export class AddQuestionsSection extends React.Component {
   renderAddNewQuestion() {
     if (!this.state.editingQuestion) {
       return (
-        <a className="button add-new-question-button" onClick={() => {this.showQuestionEditorSection(true)}}>
+        <a className="button add-new-question-button" onClick={() => {this.showQuestionEditorSection()}}>
           Add new question
         </a>  
       )
@@ -90,7 +90,7 @@ export class AddQuestionsSection extends React.Component {
   
   onQuestionAdd(question) {
     this.props.onQuestionAdd(question);
-    this.showQuestionEditorSection(false);
+    this.onQuestionEditorClose(false);
   }
   
   editQuestion(questionIndex) {
@@ -101,6 +101,16 @@ export class AddQuestionsSection extends React.Component {
   
   onQuestionUpdate(questionIndex, updatedQuestion) {
     this.updateSavedQuestion(questionIndex, updatedQuestion); 
+    this.closeSavedQuestionEditor();
+  }
+  
+  onQuestionEditorClose() {
+    this.props.onQuestionEditorUpdate(false);
+    this.closeQuestionEditor();
+  }
+  
+  onSavedQuestionEditorClose() {
+    this.props.onQuestionEditorUpdate(false);
     this.closeSavedQuestionEditor();
   }
   
@@ -115,13 +125,22 @@ export class AddQuestionsSection extends React.Component {
     this.props.onQuestionsUpdated(updatedQuestions);
   }
   
+  closeQuestionEditor() {
+    this.setState({
+      editingQuestion: false
+    })
+  }
+  
   closeSavedQuestionEditor() {
     this.setState({
       savedQuestionEditing: null
     })
   }
   
-  showQuestionEditorSection(show) {
-    this.setState({editingQuestion: show});
+  showQuestionEditorSection() {
+    this.props.onQuestionEditorUpdate(true);
+    this.setState({
+      editingQuestion: true
+    });
   }
 }
