@@ -12,7 +12,10 @@ export class QuestionEditor extends React.Component {
       ? {
         questionText: this.props.question.text,
         choices: this.props.question.choices,
-        answer: this.props.question.answer
+        answer: this.props.question.answer,
+        showErrorForQuestionText: false,
+        emptyChoices: [],
+        showErrorForAnswer: false
       }
       : {
         questionText: "",
@@ -20,7 +23,10 @@ export class QuestionEditor extends React.Component {
           "A": '',
           "B": ''
         },
-        answer: ""
+        answer: "",
+        showErrorForQuestionText: false,
+        emptyChoices: [],
+        showErrorForAnswer: false
       }
     
     this.addNewChoice = this.addNewChoice.bind(this);
@@ -30,7 +36,7 @@ export class QuestionEditor extends React.Component {
     this.handleInputChange = setStateOnInputChange.bind(this);
   }
   
-  renderChoices() {
+  renderChoices(emptyChoices, showErrorForAnswer) {
     return Object.entries(this.state.choices).map((choice, i) => {
       var choiceValue = choice[0];
       var choiceText = choice[1];
@@ -43,8 +49,29 @@ export class QuestionEditor extends React.Component {
         onCheckboxSelect={this.updateAnswer}
         checked={this.state.answer === choiceValue}
         editMode={true}
+        showError={emptyChoices.includes(choiceValue)}
       /> 
     });
+  }
+  
+  renderErrorMessage() {
+    if (this.state.showErrorForQuestionText || this.state.emptyChoices.length > 0) {
+      if (this.state.showErrorForAnswer) {
+        return (
+          <p className="error-message">Please make sure all fields are filled out, and a correct answer is selected.</p>  
+        )
+      }
+      
+      return (
+        <p className="error-message">Please make sure all fields are filled out..</p>  
+      )
+    }
+    
+    if (this.state.showErrorForAnswer) {
+      return (
+        <p className="error-message">Please make sure a correct answer is selected.</p>  
+      )
+    }
   }
   
   render() {
@@ -58,9 +85,13 @@ export class QuestionEditor extends React.Component {
             name="questionText" 
             onChange={this.handleInputChange} 
             value={this.state.questionText}
+            className={this.questionTextClass(this.state.showErrorForQuestionText)}
           />
         </div>
-        {this.renderChoices()}
+        
+        {this.renderChoices(this.state.emptyChoices, false)}
+        
+        {this.renderErrorMessage()}
         
         <div className="buttons-row">
           <a className="button add-new-choice" onClick={this.addNewChoice}>
@@ -79,6 +110,10 @@ export class QuestionEditor extends React.Component {
     )
   }
   
+  questionTextClass(error) {
+    return error ? 'input-error' : '';
+  }
+  
   addNewChoice() {
     let numChoices = Object.entries(this.state.choices).length;
     let newChoiceValue = this.alphabet[numChoices];
@@ -94,17 +129,47 @@ export class QuestionEditor extends React.Component {
     this.setState(newState);
   }
   
+  validateChoices(callback) {
+    this.setState({
+      showErrorForQuestionText: this.state.questionText.length === 0,
+      emptyChoices: this.getEmptyChoices(this.state.choices),
+      showErrorForAnswer: this.state.answer.length === 0
+    }, () => callback());
+  }
+  
+  submitIfNoErrors() {
+    if (!this.showErrors()) {
+      this.props.onSave({
+        text: this.state.questionText,
+        choices: this.state.choices,
+        answer: this.state.answer
+      });
+    }
+  }
+  
   onSubmitQuestion() {
-    this.props.onSave({
-      text: this.state.questionText,
-      choices: this.state.choices,
-      answer: this.state.answer
-    });
+    this.validateChoices(() => this.submitIfNoErrors());
   }
   
   updateAnswer(value) {
     this.setState({
       answer: value
     })
+  }
+  
+  getEmptyChoices(choices) {
+    var emptyChoices = [];
+    
+    Object.entries(this.state.choices).map((choice) => {
+      if (choice[1].length === 0) {
+        emptyChoices.push(choice[0]);
+      }
+    })
+    
+    return emptyChoices;
+  }
+  
+  showErrors() {
+    return this.state.showErrorForQuestionText || this.state.emptyChoices.length > 0 || this.state.showErrorForAnswer;
   }
 }

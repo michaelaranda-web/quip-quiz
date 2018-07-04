@@ -34,6 +34,7 @@ export class QuestionChoice extends React.Component {
           value={this.props.choiceText}
           placeholder={this.props.choiceText}
           onChange={this.onInputChange.bind(this)}
+          className={this.choiceTextClass()}
         />  
       )
     } else {
@@ -57,6 +58,10 @@ export class QuestionChoice extends React.Component {
         />
       </div>
     )
+  }
+  
+  choiceTextClass() {
+    return this.props.showError ? "input-error" : "";
   }
   
   onCheckboxSelect(e) {
