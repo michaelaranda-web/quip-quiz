@@ -7,8 +7,8 @@
   width: 100%;
 }
 
-#quiz-new-page, #quiz-index-page, #quiz-results-page {
-  .form-container, .results-container {
+#quiz-new-page, #quiz-index-page {
+  .form-container {
     min-height: 100%;
     
     @media (max-width: $mobile-max) {
@@ -23,12 +23,16 @@
   }
 }
 
-.nav-back-arrow {
-  font-size: 24px;
-  padding: 10px 0;
-  cursor: pointer;
-  
-  &:hover {
-    color: #403e3e;;
+#quiz-show-page, #quiz-results-page {
+  .quiz-container, .results-container {
+    min-height: 100%;
+    background-color: white;
+    padding: 0 10px;
+    
+    @media (min-width: $tablet-portrait-min) {
+      margin: 0 auto;
+      min-width: 700px;
+      max-width: 900px;
+    }
   }
 }

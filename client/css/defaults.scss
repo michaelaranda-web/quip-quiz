@@ -61,3 +61,13 @@ a, a:visited, a:hover, a:active {
   color: red;
   padding: 5px 0;
 }
+
+.nav-back-arrow {
+  font-size: 24px;
+  padding: 10px 0;
+  cursor: pointer;
+  
+  &:hover {
+    color: #403e3e;;
+  }
+}

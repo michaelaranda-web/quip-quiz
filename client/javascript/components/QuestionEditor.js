@@ -36,7 +36,7 @@ export class QuestionEditor extends React.Component {
     this.handleInputChange = setStateOnInputChange.bind(this);
   }
   
-  renderChoices(emptyChoices, showErrorForAnswer) {
+  renderChoices(emptyChoices) {
     return Object.entries(this.state.choices).map((choice, i) => {
       var choiceValue = choice[0];
       var choiceText = choice[1];
@@ -89,7 +89,7 @@ export class QuestionEditor extends React.Component {
           />
         </div>
         
-        {this.renderChoices(this.state.emptyChoices, false)}
+        {this.renderChoices(this.state.emptyChoices)}
         
         {this.renderErrorMessage()}
         
