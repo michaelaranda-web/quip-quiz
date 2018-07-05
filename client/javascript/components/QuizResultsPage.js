@@ -70,6 +70,12 @@ export class QuizResultsPage extends React.Component {
             <h2>Results</h2>
             {this.renderResults()}
             {this.renderScore()}
+            
+            <div className="buttons-row">
+              <a className="button view-more-quizzes-button" href="/quizzes">View More Quizzes</a>
+              <a className="button create-quiz-button" href="/quizzes/new">Create a Quiz</a>
+              <a className="button home-button" href="/">Home</a>
+            </div>
           </div>
         </div>
       )

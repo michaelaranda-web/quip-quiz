@@ -27,4 +27,23 @@
     font-weight: bold;
     margin-top: 30px;
   }
+  
+  .buttons-row {
+    text-align: right;
+    padding: 25px 5px;
+    
+    @media (max-width: $mobile-max) {
+      text-align: center;
+    }
+    
+    .button {
+      color: white;
+      
+      @media (max-width: $mobile-max) {
+        width: 90%;
+        margin: 5px auto;
+        font-size: 18px;
+      }
+    }
+  }
 }
