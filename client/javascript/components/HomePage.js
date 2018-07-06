@@ -10,11 +10,13 @@ export class HomePage extends React.Component {
         </div>
         
         <div className="content-section">
-          <div className="button-container">
-            <a className="home-page-button" href="/quizzes">View Quizzes</a>
-          </div>
-          <div className="button-container">
-            <a className="home-page-button" href="/quizzes/new">Create a Quiz</a>
+          <div className="button-row">
+            <div className="button-container">
+              <a className="button home-page-button" href="/quizzes">View Quizzes</a>
+            </div>
+            <div className="button-container">
+              <a className="button home-page-button" href="/quizzes/new">Create a Quiz</a>
+            </div>
           </div>
         </div>
       </div>

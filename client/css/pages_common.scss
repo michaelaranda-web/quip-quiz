@@ -16,9 +16,12 @@
       position: relative;
     }
     
+    @media (min-width: $tablet-portrait-min) {
+      max-width: 700px;
+    }
+    
     background-color: white;
     margin: auto;
-    max-width: 750px;
     padding: 0 10px;
   }
 }

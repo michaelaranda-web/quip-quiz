@@ -1,6 +1,12 @@
 $mobile-max: 767px;
 $tablet-portrait-min: 768px;
 
+@mixin box-shadowed() {
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 
+              0px 1px 1px 0px rgba(0, 0, 0, 0.14), 
+              0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+}
+
 html {
   height: 100%;
   background-color: $page-background-blue;
@@ -12,7 +18,7 @@ body {
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 34px;
   padding: 10px 0 5px;
 }
 
@@ -29,6 +35,8 @@ a, a:visited, a:hover, a:active {
 }
 
 .button {
+  @include box-shadowed;
+  
   display: inline-block;
   background-color: grey;  
   border-radius: 5px;
@@ -37,18 +45,25 @@ a, a:visited, a:hover, a:active {
   margin: 0 5px;
   text-decoration: none;
   cursor: pointer;
-  
+
   &.save-button {
     background-color: #42a0e2;
     
     &:hover {
-      background-color: #cadef3;
+      background-color: #1181b7;
     }
   }
   
   &:hover {
     background-color: #8b8c8e;
     color: white;
+  }
+  
+  @media (max-width: $mobile-max) {
+    width: 90%;
+    margin: 5px auto;
+    font-size: 18px;
+    text-align: center;
   }
 }
 

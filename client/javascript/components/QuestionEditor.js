@@ -77,19 +77,21 @@ export class QuestionEditor extends React.Component {
   render() {
     return (
       <div className="question-editor-section">
-        <div className="field">
-          <label htmlFor="new-question-text">Question:</label>
+        <div className="field question-field">
           <input 
             type="text" 
             id="new-question-text" 
             name="questionText" 
+            placeholder="Enter question here"
             onChange={this.handleInputChange} 
             value={this.state.questionText}
             className={this.questionTextClass(this.state.showErrorForQuestionText)}
           />
         </div>
         
-        {this.renderChoices(this.state.emptyChoices)}
+        <div className="choices-section">
+          {this.renderChoices(this.state.emptyChoices)}
+        </div>
         
         {this.renderErrorMessage()}
         

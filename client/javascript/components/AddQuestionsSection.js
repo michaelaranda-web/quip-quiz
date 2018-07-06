@@ -51,7 +51,7 @@ export class AddQuestionsSection extends React.Component {
                 {
                   Object.entries(question.choices).map((choice, i) => {
                     var rightAnswer = choice[0] === question.answer;
-                    var checkmark = rightAnswer ? <span>✔</span> : null;
+                    var checkmark = rightAnswer ? <span className="checkmark">✔</span> : null;
                     
                     return (
                       <div className="choice" key={i}>
@@ -71,9 +71,11 @@ export class AddQuestionsSection extends React.Component {
   renderAddNewQuestion() {
     if (!this.state.editingQuestion) {
       return (
-        <a className="button add-new-question-button" onClick={() => {this.showQuestionEditorSection()}}>
-          Add new question
-        </a>  
+        <div className="button-row">
+          <a className="button add-new-question-button" onClick={() => {this.showQuestionEditorSection()}}>
+            Add new question
+          </a>  
+        </div>
       )
     }
   }

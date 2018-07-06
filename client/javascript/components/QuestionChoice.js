@@ -32,7 +32,7 @@ export class QuestionChoice extends React.Component {
     if (this.props.editMode) {
       return (
         <input 
-          type="text" 
+          type="text"
           id={`choice-${this.props.choiceValue}`}
           value={this.props.choiceText}
           placeholder={this.props.choiceText}
@@ -48,7 +48,7 @@ export class QuestionChoice extends React.Component {
   }
   
   renderQuip() {
-    if (this.props.checked) {
+    if (this.props.checked && !this.props.editMode) {
       return (
         <span className="quip">{this.state.quip}</span>  
       )
@@ -60,20 +60,25 @@ export class QuestionChoice extends React.Component {
       <div className="choice">
         {this.renderChoiceValue()}
         {this.renderChoiceText()}
-        <input
-          id={`checkbox-${this.props.choiceValue}`}
-          type="checkbox"
-          name={this.props.choiceValue}
-          checked={this.props.checked}
-          onChange={(event) => this.onCheckboxSelect(event)}
-        />
+        
+        <label className="checkbox-container">
+          <input
+            id={`checkbox-${this.props.choiceValue}`}
+            type="checkbox"
+            name={this.props.choiceValue}
+            checked={this.props.checked}
+            onChange={(event) => this.onCheckboxSelect(event)}
+          />
+          <span class="correct-answer-checkmark"></span>
+        </label>
+
         {this.renderQuip()}
       </div>
     )
   }
   
   choiceTextClass() {
-    return this.props.showError ? "input-error" : "";
+    return this.props.showError ? "choice-text input-error" : "choice-text";
   }
   
   onCheckboxSelect(e) {

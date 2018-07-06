@@ -12,7 +12,18 @@
     }
     
     input {
+      border: none;
+      border-bottom: 1px solid grey;
       flex-grow: 1;
+      outline: none;
+      
+      @media (max-width: $mobile-max) {
+        border-radius: none;  
+      }
+    }
+    
+    input, textarea {
+      font-size: 15px;
     }
     
     .field {
@@ -21,6 +32,10 @@
       
       &.name-field, &.description-field {
         flex-direction: column;
+      }
+      
+      &.description-field {
+        padding-top: 15px;
       }
       
       #quiz-name {
@@ -32,28 +47,52 @@
       #quiz-description {
         display: block;
         resize: none;
-        height: 35px;
+        height: 70px;
         padding: 5px;
         margin-top: 5px;
         font-family: inherit;
       }
     }
     
-    .add-questions-section-header {
-      font-size: 24px;
-      margin: 10px 0 5px;
+    .error-message {
+      margin-left: 5px;
+      
+      &.questions-error-message {
+        text-align: center;
+      }
     }
     
-    .add-questions-section {
-      .add-new-question-button {
+    .add-questions-section-header {
+      font-size: 24px;
+      margin: 35px 0 15px;
+    }
+    
+    .add-questions-section {     
+      @media (min-width: $tablet-portrait-min) {
         margin: 10px 0;
+      }
+        
+      .button-row {
+        @media (max-width: $mobile-max) {
+          text-align: center;
+        }
+        
+        .add-new-question-button {
+          @media (min-width: $tablet-portrait-min) {
+            margin: 10px 0;
+          }
+        }  
       }
       
       .questions-section {
-        padding: 10px 0 20px;
+        padding: 10px 10px 20px;
         
         .question-item {
-          padding: 5px 0;
+          padding-bottom: 35px;
+          
+          .fa {
+            padding: 0 3px;
+          }
           
           .question {
             margin-bottom: 5px;
@@ -73,18 +112,99 @@
               font-size: 22px;
             }
           }
+          
+          .checkmark {
+            color: #46c127;
+          }
         }
       }
       
       .question-editor-section {
-        .choice {
-          .choice-value {
-            display: inline-block;
-            min-width: 15px;
+        @include box-shadowed;
+        
+        padding: 20px 20px 10px;
+        
+        .question-field {
+          padding: 15px 0;
+        }
+        
+        .choices-section {
+          @media (max-width: $mobile-max) {
+            text-align: left;            
           }
           
-          input {
-            flex-grow: 0;
+          .choice {
+            padding: 10px 0;
+            
+            .choice-value {
+              display: inline-block;
+              min-width: 15px;
+            }
+            
+            .choice-text {
+              width: 300px;
+              margin-right: 5px;
+              
+              @media (max-width: $mobile-max) {
+                width: 74%;
+              }
+            }
+            
+            .checkbox-container {
+              display: inline-block;
+              position: relative;
+              padding-left: 35px;
+              margin-bottom: 12px;
+              cursor: pointer;
+              font-size: 22px;
+              -webkit-user-select: none;
+              -moz-user-select: none;
+              -ms-user-select: none;
+              user-select: none;
+              
+              &:hover {
+                background-color: #ccc;
+              }
+              
+              input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                
+                &:checked ~ .correct-answer-checkmark {
+                  background-color: #2196F3;
+                }
+                
+                &:checked ~ .correct-answer-checkmark:after {
+                  display: block;
+                }
+              }
+              
+              .correct-answer-checkmark {
+                position: absolute;
+                top: -8px;
+                left: 3px;
+                height: 25px;
+                width: 25px;
+                background-color: #eee;
+                
+                &:after {
+                  content: "";
+                  position: absolute;
+                  display: none;
+                  
+                  left: 9px;
+                  top: 5px;
+                  width: 5px;
+                  height: 10px;
+                  border: solid white;
+                  border-width: 0 3px 3px 0;
+                  -webkit-transform: rotate(45deg);
+                  -ms-transform: rotate(45deg);
+                  transform: rotate(45deg);
+                }
+              }  
+            }
           }
         }
         
@@ -95,8 +215,12 @@
     }
     
     .submit-button-row {
+      @media (max-width: $mobile-max) {
+        text-align: center;
+      }
+              
       text-align: right;
-      padding: 10px 0;
+      padding: 20px 0;
     }
   }
 }

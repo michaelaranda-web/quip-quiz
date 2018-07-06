@@ -24,21 +24,21 @@ export class NewQuizForm extends React.Component {
     return (
       <form id="new-quiz-form">
         <div className="field name-field">
-          <label htmlFor="quiz-name">Name</label>
           <input 
             type="text" 
             id="quiz-name" 
             name="name" 
+            placeholder="Name"
             className={this.nameFieldClass()}
             onChange={this.handleInputChange}
           />
           {this.renderErrorMessageForName()}
         </div>
         <div className="field description-field">
-          <label htmlFor="quiz-description">Description</label>
           <textarea 
             id="quiz-description" 
-            name="description" 
+            name="description"
+            placeholder="Description"
             className={this.descriptionFieldClass()}
             onChange={this.handleInputChange}
           />
@@ -94,7 +94,7 @@ export class NewQuizForm extends React.Component {
   renderErrorMessageForQuestions() {
     if (this.state.showErrorForQuestions && this.state.questions.length === 0 && !this.state.questionEditorOpen) {
       return (
-        <p className="error-message">You must add questions before submitting a quiz.</p>  
+        <p className="error-message questions-error-message">You must add questions before submitting a quiz.</p>  
       )
     }
   }

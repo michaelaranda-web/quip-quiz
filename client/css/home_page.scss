@@ -24,22 +24,23 @@ html {
   }
   
   .content-section {
-    display: flex;
-    justify-content: center;
-    
-    .button-container {
-      margin: 0 20px;
+    .button-row {
       text-align: center;
       
-      .home-page-button {
-        padding: .8em 1.2em;
-        background-color: #E6E6E6;
-        text-decoration: none;
-        border-radius: 2px;
+      .button-container {
+        margin: 0 20px;
+        text-align: center;
         display: inline-block;
-        position: relative;
-        top: -25px;
-      } 
+        
+        .home-page-button {
+          width: 150px;
+          color: black;
+          padding: .8em 1.2em;
+          background-color: #E6E6E6;
+          position: relative;
+          top: -25px;
+        } 
+      }
     }
   }
 }
