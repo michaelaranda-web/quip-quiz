@@ -17,6 +17,14 @@
         margin-bottom: 5px;
         font-weight: bold;
       }
+      
+      .choice {
+        .quip {
+          font-size: 14px;
+          margin-left: 5px;
+          color: $page-background-blue;
+        }
+      }
     }
     
     .buttons-row {
