@@ -3,7 +3,7 @@ export function generateQuip() {
     "Are you sure? Like, *sure* sure?",
     "It'd be a shame if this wasn't the right answer.",
     "Did you ACTUALLY mean to pick this one?",
-    "They say right and wrong are subjective, but this is definitely wrong answer.",
+    "They say right and wrong are subjective, but this is definitely the wrong answer.",
     "Very...creative answer.",
     "Quick, before it's too late! Change this answer!",
     "This is the wrong answer. Seriously. Why would I lie?",
