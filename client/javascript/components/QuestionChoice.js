@@ -1,13 +1,8 @@
 import React from 'react';
-import { generateQuip } from '../helpers/quip';
 
 export class QuestionChoice extends React.Component {
   constructor(props) {
     super(props);
-    
-    this.state = {
-      quip: ""
-    }
   }
   
   static get defaultProps() {
@@ -47,20 +42,9 @@ export class QuestionChoice extends React.Component {
     }
   }
   
-  renderQuip() {
-    if (this.props.checked && !this.props.editMode) {
-      return (
-        <span className="quip">{this.state.quip}</span>  
-      )
-    }
-  }
-  
   render() {
     return (
       <div className="choice">
-        {this.renderChoiceValue()}
-        {this.renderChoiceText()}
-        
         <label className="checkbox-container">
           <input
             id={`checkbox-${this.props.choiceValue}`}
@@ -69,10 +53,10 @@ export class QuestionChoice extends React.Component {
             checked={this.props.checked}
             onChange={(event) => this.onCheckboxSelect(event)}
           />
-          <span class="correct-answer-checkmark"></span>
+          <span className="checkmark"></span>
         </label>
-
-        {this.renderQuip()}
+        {this.renderChoiceValue()}
+        {this.renderChoiceText()}
       </div>
     )
   }
@@ -82,7 +66,6 @@ export class QuestionChoice extends React.Component {
   }
   
   onCheckboxSelect(e) {
-    this.setState({quip: generateQuip()});
     this.props.onCheckboxSelect(e.target.name);
   }
 }

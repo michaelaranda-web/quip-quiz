@@ -11,19 +11,24 @@
     }
     
     .question-item {
-      padding: 10px 0;
+      padding: 10px 0 30px;
       
       .question {
         margin-bottom: 5px;
-        font-weight: bold;
+        font-size: 22px;
       }
       
       .choice {
-        .quip {
-          font-size: 14px;
-          margin-left: 5px;
-          color: $page-background-blue;
-        }
+        display: flex;
+        align-items: center;
+        padding: 10px 0;
+      }
+      
+      .quip {
+        padding: 10px 0;
+        font-size: 16px;
+        font-weight: bold;
+        color: $page-background-blue;
       }
     }
     

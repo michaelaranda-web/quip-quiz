@@ -29,14 +29,16 @@ export class QuizResultsPage extends React.Component {
   renderResults() {
     var quiz = this.state.quiz;
     
-    //A lot of this data should be organized as part of presenting the response, server-side
     return this.state.responses.map((response, i) => {
+      var answerIcon = response.answeredCorrectly 
+        ? <span className="checkmark-icon">✓</span> 
+        : <span className="x-icon">X</span>
+      
       return (
         <div className="result" key={i}>
           <p className="question">{`Question ${i+1}: ${quiz.questions[i].text}`}</p>
-          <p className="response">{`Your response was: ${response.response}`}</p>
-          <p className="correct-answer">{`The correct response was: ${response.correctAnswer}`}</p>
-          <p className="answer-message">{`You answered ${response.answeredCorrectly ? 'correctly' : 'incorrectly'}!`}</p>
+          <p className="response">{`Your answer: ${response.response}`}</p>
+          <p className="correct-answer">{`Correct answer: ${response.correctAnswer}`} {answerIcon}</p>
         </div>
       )
     })

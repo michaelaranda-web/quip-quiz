@@ -63,7 +63,7 @@ export class QuestionEditor extends React.Component {
       }
       
       return (
-        <p className="error-message">Please make sure all fields are filled out..</p>  
+        <p className="error-message">Please make sure all fields are filled out.</p>  
       )
     }
     

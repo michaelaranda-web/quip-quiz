@@ -1,15 +1,25 @@
 import React from 'react';
 import { QuestionChoice } from './QuestionChoice';
+import { generateQuip } from '../helpers/quip';
 
 export class Question extends React.Component {
   constructor(props) {
     super(props);
     
     this.state = {
-      currentResponse: ''
+      currentResponse: '',
+      quip: ''
     }
     
     this.onChoiceSelect = this.onChoiceSelect.bind(this);
+  }
+  
+  renderQuip() {
+    if (this.state.currentResponse !== "") {
+      return (
+        <p className="quip">{this.state.quip}</p>  
+      )
+    }
   }
   
   render() {
@@ -34,6 +44,7 @@ export class Question extends React.Component {
             )
           })
         }
+        {this.renderQuip()}
       </div>
     )
     
@@ -41,7 +52,8 @@ export class Question extends React.Component {
   
   onChoiceSelect(choiceValue) {
     this.setState({
-      currentResponse: choiceValue
+      currentResponse: choiceValue,
+      quip: generateQuip()
     })
     
     this.props.onChoiceSelect(this.props.questionNumber, choiceValue);
