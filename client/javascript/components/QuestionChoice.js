@@ -37,7 +37,11 @@ export class QuestionChoice extends React.Component {
       )
     } else {
       return (
-        <span id={`choice-${this.props.choiceValue}`}>{this.props.choiceText}</span>
+        <label 
+          id={`choice-${this.props.choiceValue}`}
+          htmlFor={`checkbox-${this.props.choiceValue}`}>
+            {this.props.choiceText}
+        </label>
       )
     }
   }
