@@ -55,7 +55,7 @@ export class QuizShowPage extends React.Component {
                   <Question 
                     key={i}
                     question={question}
-                    questionNumber={i}
+                    questionNumber={i+1}
                     onChoiceSelect={self.onChoiceSelect}
                   />  
                 )

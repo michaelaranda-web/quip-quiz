@@ -27,7 +27,7 @@ export class Question extends React.Component {
     
     return  (
       <div className="question-item">
-        <p className="question">{`Question ${this.props.questionNumber+1}: ${this.props.question.text}`}</p>
+        <p className="question">{`Question ${this.props.questionNumber}: ${this.props.question.text}`}</p>
         {
           Object.entries(this.props.question.choices).map((choice, i) => {
             var choiceValue = choice[0];
@@ -37,6 +37,7 @@ export class Question extends React.Component {
               <QuestionChoice
                 key={i}
                 checked={this.state.currentResponse === choiceValue}
+                questionNumber={this.props.questionNumber}
                 choiceValue={choiceValue}
                 choiceText={choiceText}
                 onCheckboxSelect={self.onChoiceSelect}

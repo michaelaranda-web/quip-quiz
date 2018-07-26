@@ -39,7 +39,7 @@ export class QuestionChoice extends React.Component {
       return (
         <label 
           id={`choice-${this.props.choiceValue}`}
-          htmlFor={`checkbox-${this.props.choiceValue}`}>
+          htmlFor={`checkbox-${this.props.questionNumber}${this.props.choiceValue}`}>
             {this.props.choiceText}
         </label>
       )
@@ -51,7 +51,7 @@ export class QuestionChoice extends React.Component {
       <div className="choice">
         <label className="checkbox-container">
           <input
-            id={`checkbox-${this.props.choiceValue}`}
+            id={`checkbox-${this.props.questionNumber}${this.props.choiceValue}`}
             type="checkbox"
             name={this.props.choiceValue}
             checked={this.props.checked}
